@@ -9,6 +9,7 @@ const Navigation = ({ cart }) => <nav>
   <ul className="top-menu">
     <li><NavLink to='/'>Home</NavLink></li>
     <li><NavLink to='/cart'>Cart ({ cart.length })</NavLink></li>
+    <li><NavLink to='/checkout'>Check out</NavLink></li>
   </ul>
 </nav>
 
