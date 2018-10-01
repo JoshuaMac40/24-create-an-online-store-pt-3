@@ -1,10 +1,25 @@
 import React from 'react'
 import { connect } from  'react-redux'
 
+import Cart from '../cart'
+import CheckoutForm from './form'
+
+function submitOrder(values) {
+  console.log(values)
+}
+
 function Checkout(props) {
-  return <form action="https://student-example-api.herokuapp.com/">
-    <input type={} />
-  </form>
+  // action="https://student-example-api.herokuapp.com/"
+  
+  return <div>
+    <div style={{ border: "1px solid black" }}>
+      <Cart />
+    </div>
+
+    <CheckoutForm onSubmit={submitOrder} />
+    
+  </div>
+}
 
 function mapStateToProps(state) {
   return {
@@ -15,5 +30,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {}
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout)
