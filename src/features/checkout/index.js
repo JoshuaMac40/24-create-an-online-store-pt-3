@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from  'react-redux'
 
 function Checkout(props) {
-  return <div>
-
-  </div>
+  return <form action="https://student-example-api.herokuapp.com/">
+    <input type={} />
+  </form>
 
 function mapStateToProps(state) {
   return {
