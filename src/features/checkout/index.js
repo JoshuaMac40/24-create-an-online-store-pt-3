@@ -3,20 +3,37 @@ import { connect } from  'react-redux'
 
 import Cart from '../cart'
 import CheckoutForm from './form'
+import fetchApi from '../../modules/fetch-api'
 
-function submitOrder(values) {
-  console.log(values)
+function submitOrder(values, cart) {
+  const { email, name } = values.order
+  console.log(cart)
+  fetchApi("post", "https://student-example-api.herokuapp.com/v1/orders", {
+    order: {
+      name: name,
+      email: email,
+      order_items_attributes: cart.map(item => ({
+        product_id: item.id,
+        qty: item.quantity,
+      }))
+    }
+  }).then(json => {
+    if (json.errors) {
+      alert('something went wrong with the order!')
+    }
+    document.location.href = `/orders/${json.id}`
+  })
 }
 
 function Checkout(props) {
-  // action="https://student-example-api.herokuapp.com/"
-  
+  const { cart } = props
+
   return <div>
     <div style={{ border: "1px solid black" }}>
       <Cart />
     </div>
 
-    <CheckoutForm onSubmit={submitOrder} />
+    <CheckoutForm onSubmit={(values) => submitOrder(values, cart)} />
     
   </div>
 }
